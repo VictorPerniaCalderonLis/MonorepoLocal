@@ -1,0 +1,78 @@
+stages:
+  - dependency-check
+  - quality-test
+  - build
+  - publish
+
+variables:
+  # TODO: SUSTITUIR POR EL NOMBRE REAL
+  DOCKER_IMAGE_NAME: example/frontend
+dependency-check:
+  stage: dependency-check
+  image:
+    name: owasp/dependency-check
+    entrypoint: ['']
+  script:
+    - /usr/share/dependency-check/bin/dependency-check.sh --project ${SONAR_PROJECT_KEY} --out ./dependency_check_result --scan . --nvdApiKey 03e6e5fe-8977-49c4-844f-6a7fd4af86c6 --enableExperimental --format "ALL"
+    - ls
+  artifacts:
+    paths:
+      - dependency_check_result
+  tags:
+    - docker executor
+  only:
+    - develop
+sonarqube-check:
+  stage: quality-test
+  image:
+    name: sonarsource/sonar-scanner-cli:5.0
+    entrypoint: ['']
+  tags:
+    - docker executor
+  variables:
+    SONAR_USER_HOME: '${CI_PROJECT_DIR}/.sonar'
+    GIT_DEPTH: '0'
+  script:
+    - cat ./dependency_check_result/dependency-check-report.json
+    - sonar-scanner -Dsonar.projectKey=${SONAR_PROJECT_KEY} -Dsonar.exclusions=**/dependency_check_result/** -Dsonar.dependencyCheck.jsonReportPath=./dependency_check_result/dependency-check-report.json -Dsonar.dependencyCheck.htmlReportPath=./dependency_check_result/dependency-check-report.html  -Dsonar.dependencyCheck.securityHotspot=true
+  allow_failure: true
+  only:
+    - develop
+build_dev:
+  stage: build
+  script:
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - ls -lah .secure_files
+    - cp ./.secure_files/.env.dev .env.dev
+    - docker build --no-cache --build-arg ENV_MODE=dev -t $AZURE_REGISTRY_DEV/$DOCKER_IMAGE_NAME:dev .
+    - docker login $AZURE_REGISTRY_DEV -u $AZURE_REGISTRY_USERNAME_DEV -p $AZURE_REGISTRY_PASSWORD_DEV
+  only:
+    - develop
+
+publish_dev:
+  stage: publish
+  script:
+    - docker push $AZURE_REGISTRY_DEV/$DOCKER_IMAGE_NAME:dev
+    - docker rmi $AZURE_REGISTRY_DEV/$DOCKER_IMAGE_NAME:dev
+  only:
+    - develop
+
+build:
+  stage: build
+  script:
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - ls -lah .secure_files
+    - cp ./.secure_files/.env.prod .env.prod
+    - docker build --no-cache --build-arg ENV_MODE=prod -t $AZURE_REGISTRY_PRO/$DOCKER_IMAGE_NAME:prod .
+    - docker login $AZURE_REGISTRY_PRO -u $AZURE_REGISTRY_USERNAME_PRO -p $AZURE_REGISTRY_PASSWORD_PRO
+  only:
+    - main
+    - main
+
+publish_master:
+  stage: publish
+  script:
+    - docker push $AZURE_REGISTRY_PRO/$DOCKER_IMAGE_NAME:prod
+    - docker rmi $AZURE_REGISTRY_PRO/$DOCKER_IMAGE_NAME:prod
+  only:
+    - main

@@ -1,0 +1,97 @@
+/* fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* tailwindCSS */
+@import 'tailwindcss';
+
+/* Variables globales*/
+:root {
+  /* colores */
+  --primary: #1da7e0;
+  --secondary: #b9e3f4;
+  --warning: #cece24;
+  --error: #ca2f21;
+  --success: #39b852;
+  --info: #2296c8;
+
+  /* text colors */
+  --primary-text: #1f1f1f;
+  --primaryMuted-text: #575757;
+  --header-text-color: #1e1e1e;
+
+  /* bg colors */
+  --primary-bg: #f7f7f7;
+  --secondary-bg: #ffffff;
+
+  /* fuentes */
+  --primary-font: 'Roboto', sans-serif;
+  --secondary-font: 'Georama', sans-serif;
+
+  /* =====================
+     BACKGROUNDS 
+  ===================== */
+  --background-1: #f7f7f7;
+  --background-2: #ffffff;
+  --background-3: #f1f5f9;
+  --background-4: #e5e7eb;
+  --background-5: #d1d5db;
+}
+
+@theme {
+  /* colores */
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-success: var(--success);
+  --color-info: var(--info);
+
+  /* text colors */
+  --color-primaryText: var(--primary-text);
+  --color-primaryMutedText: var(--primaryMuted-text);
+  --color-headerText: var(--header-text-);
+
+  /* bg colors */
+  --color-primaryBg: var(--primary-bg);
+  --color-secondaryBg: var(--secondary-bg);
+
+  /* Fonts */
+
+  /* =====================
+     BACKGROUNDS 
+  ===================== */
+
+  --color-background2: var(--background-2);
+}
+
+#root {
+  height: 100vh;
+  background: var(--primary-bg);
+  color: var(--primary-text);
+}
+
+/* Barra de scroll */
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primaryMuted-text);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+@layer components {
+  .h1 {
+    color: #ff0000;
+  }
+}

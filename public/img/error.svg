@@ -1,0 +1,30 @@
+<svg width="300" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Body -->
+  <rect x="90" y="100" width="120" height="160" rx="15" ry="15" fill="#3498db" />
+  
+  <!-- Head -->
+  <rect x="110" y="30" width="80" height="80" rx="10" ry="10" fill="#3498db" />
+  
+  <!-- Eyes -->
+  <circle cx="130" cy="60" r="10" fill="#ecf0f1" />
+  <circle cx="170" cy="60" r="10" fill="#ecf0f1" />
+  
+  <!-- Mouth -->
+  <rect x="130" y="80" width="40" height="10" fill="#ecf0f1" />
+  
+  <!-- Arms -->
+  <rect x="70" y="140" width="20" height="80" rx="10" ry="10" fill="#3498db" />
+  <rect x="210" y="140" width="20" height="80" rx="10" ry="10" fill="#3498db" />
+  
+  <!-- Tools in Hands -->
+  <polygon points="65,220 75,210 45,180 35,190" fill="#2c3e50" /> <!-- Wrench -->
+  <polygon points="235,220 225,210 255,180 265,190" fill="#2c3e50" /> <!-- Screwdriver -->
+  
+  <!-- Legs -->
+  <rect x="110" y="260" width="30" height="100" rx="10" ry="10" fill="#3498db" />
+  <rect x="160" y="260" width="30" height="100" rx="10" ry="10" fill="#3498db" />
+  
+  <!-- Wheels -->
+  <circle cx="125" cy="370" r="15" fill="#2c3e50" />
+  <circle cx="175" cy="370" r="15" fill="#2c3e50" />
+</svg>

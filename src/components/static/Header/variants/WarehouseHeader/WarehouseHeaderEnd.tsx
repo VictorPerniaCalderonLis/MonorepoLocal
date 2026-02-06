@@ -1,0 +1,73 @@
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { useLanguageSelector } from '../../../LanguageSelector/hooks/useLanguageSelector';
+export const WarehouseHeaderEnd = () => {
+  const { selectedLanguage, handleChange } = useLanguageSelector();
+  const { t } = useTranslation('common');
+
+  const handleSelectChange = (event: SelectChangeEvent<string>) => {
+    handleChange(event.target.value);
+  };
+
+  // De este hook sacaremos los valores de LARRAITZ ILLUNBE  y ALMACEN que están hardcoded
+  //  const { user } = useUserStore();
+
+  return (
+    <div className="shrink-0 items-center gap-3">
+      <div className="flex items-center gap-4">
+        <div className="inline-flex shrink-0 items-center gap-4">
+          <div className="flex flex-col leading-tight">
+            <span className="font-roboto text-headerText text-base leading-normal font-medium">
+              LARRAITZ ILLUNBE
+            </span>
+            <span className="text-headerText text-xs leading-normal font-extralight tracking-normal uppercase">
+              ALMACÉN
+            </span>
+          </div>
+          <AccountCircleIcon />
+        </div>
+        <div className="w-[130px]">
+          <FormControl
+            size="small"
+            variant="outlined"
+            fullWidth
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                height: 40,
+              },
+            }}
+          >
+            <InputLabel id="language-select-label">
+              {selectedLanguage === 'es-ES'
+                ? t('languages.es')
+                : t('languages.eu')}
+            </InputLabel>
+            <Select
+              labelId="language-select-label"
+              id="language-select"
+              value={selectedLanguage}
+              label={
+                selectedLanguage === 'es-ES'
+                  ? t('languages.es')
+                  : t('languages.eu')
+              }
+              onChange={handleSelectChange}
+            >
+              <MenuItem value="es-ES">{t('languages.es')}</MenuItem>
+              <MenuItem value="eu-EU">{t('languages.eu')}</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default WarehouseHeaderEnd;
