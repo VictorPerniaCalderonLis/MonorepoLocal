@@ -4,13 +4,13 @@ export const WarehouseHeaderStart = () => {
       <img
         src="/icons/favicon-irizar.svg"
         alt="Irizar"
-        className="h-full w-auto min-[835px]:hidden"
+        className="h-full w-auto min-[856px]:hidden"
       />
 
       <img
         src="/icons/irizar-logo-grafito.svg"
         alt="Irizar"
-        className="hidden h-full w-auto min-[835px]:block"
+        className="hidden h-full w-auto min-[856px]:block"
       />
     </div>
   );

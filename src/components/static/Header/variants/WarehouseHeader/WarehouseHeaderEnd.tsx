@@ -20,7 +20,7 @@ export const WarehouseHeaderEnd = () => {
   //  const { user } = useUserStore();
 
   return (
-    <div className="shrink-0 items-center gap-3">
+    <div className="ml-auto shrink-0 items-center gap-3">
       <div className="flex items-center gap-4">
         <div className="inline-flex shrink-0 items-center gap-4">
           <div className="flex flex-col leading-tight">
