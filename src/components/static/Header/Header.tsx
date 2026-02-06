@@ -8,13 +8,10 @@ export const Header = ({ headerType }: HeaderProps) => {
     switch (headerType) {
       case HEADER_TYPE.LINE_OPERATOR:
         return <LineOperatorHeader />;
-
       case HEADER_TYPE.WAREHOUSE:
         return <WarehouseHeader />;
-
       case HEADER_TYPE.QUALITY:
         return <QualityHeader />;
-
       default:
         return null;
     }
