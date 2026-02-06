@@ -35,88 +35,83 @@ export const NavbarItem = ({
   };
 
   return (
-    <>
-      <li key={item.label} className="group flex items-center justify-center">
-        <button
-          onClick={item.children ? handleMenuClick : () => navigate(item.path)}
-          aria-controls={`menu-${item.label}`}
-          className={`hover:text-primary flex h-auto flex-col items-center justify-center gap-2 px-2 py-2 transition-all duration-200 ease-in-out hover:translate-x-1 ${
-            isActive ? 'text-primary font-medium' : ''
-          }`}
-        >
+    <li key={item.label} className="group flex items-center justify-center">
+      <button
+        onClick={item.children ? handleMenuClick : () => navigate(item.path)}
+        aria-controls={`menu-${item.label}`}
+        className={`flex items-center justify-center overflow-hidden transition-all duration-200 ease-out hover:translate-x-0.5 ${
+          collapsed
+            ? 'h-16 w-[90px] flex-col gap-2 rounded-2xl px-2 py-2'
+            : 'h-16 w-full max-w-[222px] flex-row gap-4 rounded-[18px] px-6 py-4'
+        } ${isActive ? 'bg-primary font-medium text-white' : 'bg-white text-black'} `}
+      >
+        <span className={`p-2 ${isActive ? 'text-white' : 'text-black'}`}>
+          {isActive && !collapsed && item.fieldIcon
+            ? item.fieldIcon
+            : item.icon}
+        </span>
+        {!collapsed && (
           <span
-            className={`${collapsed && (isActive ? 'bg-secondary text-primary' : 'group-hover:bg-primary/10')} rounded-full p-2 transition-all duration-200`}
+            className={`flex items-center justify-center ${collapsed ? 'p-1' : 'p-2'} ${isActive ? 'text-white' : 'text-black'} uppercase`}
           >
-            {isActive && !collapsed && item.fieldIcon
-              ? item.fieldIcon
-              : item.icon}
+            {t('navbar.' + item.label)}
           </span>
-          {!collapsed && (
-            <span
-              className={`${isActive ? 'text-primaryText hover:text-primaryText font-medium' : ''} text-center text-wrap transition-opacity duration-300 ease-in-out`}
-            >
-              {t('navbar.' + item.label)}
-            </span>
-          )}
-        </button>
-        <Menu
-          id={`menu-${item.label}`}
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-          anchorOrigin={{ vertical: 'center', horizontal: 'right' }}
-          transformOrigin={{ vertical: 'center', horizontal: 'left' }}
-        >
-          {item.children?.map((subItem: NavbarItemType, idx: number) => {
-            // grupo activo
-            const groupActive = isGroupActive(
-              item.path,
-              subItem.path,
-              idx,
-              location.pathname,
-            );
+        )}
+      </button>
+      <Menu
+        id={`menu-${item.label}`}
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'center', horizontal: 'right' }}
+        transformOrigin={{ vertical: 'center', horizontal: 'left' }}
+      >
+        {item.children?.map((subItem: NavbarItemType, idx: number) => {
+          const groupActive = isGroupActive(
+            item.path,
+            subItem.path,
+            idx,
+            location.pathname,
+          );
 
-            // algun hijo activo
-            const anyChildActive = isAnyChildActive(
-              subItem,
-              groupActive,
-              location.pathname,
-            );
+          const anyChildActive = isAnyChildActive(
+            subItem,
+            groupActive,
+            location.pathname,
+          );
 
-            return (
-              <div key={subItem.label + '-group'}>
-                {idx > 0 && <Divider />}
-                <ListHeader highlighted={anyChildActive}>
-                  <div className="flex items-center gap-2 underline">
-                    {anyChildActive ? subItem.fieldIcon : subItem.icon}
-                    {t('navbar.' + subItem.label)}
-                  </div>
-                </ListHeader>
-                {subItem.children?.map((p: NavbarItemType, pIdx: number) => (
-                  <MenuItem
-                    key={p.path}
-                    onClick={handleClose}
-                    component={Link}
-                    to={p.path}
-                    dense
-                    sx={
-                      p.path === location.pathname ||
-                      (groupActive && pIdx === 0)
-                        ? {
-                            backgroundColor: (theme) =>
-                              theme.palette.action.selected,
-                          }
-                        : {}
-                    }
-                  >
-                    {t('navbar.' + p.label)}
-                  </MenuItem>
-                ))}
-              </div>
-            );
-          })}
-        </Menu>
-      </li>
-    </>
+          return (
+            <div key={subItem.label + '-group'}>
+              {idx > 0 && <Divider />}
+              <ListHeader highlighted={anyChildActive}>
+                <div className="flex items-center gap-2 underline">
+                  {anyChildActive ? subItem.fieldIcon : subItem.icon}
+                  {t('navbar.' + subItem.label)}
+                </div>
+              </ListHeader>
+              {subItem.children?.map((p: NavbarItemType, pIdx: number) => (
+                <MenuItem
+                  key={p.path}
+                  onClick={handleClose}
+                  component={Link}
+                  to={p.path}
+                  dense
+                  sx={
+                    p.path === location.pathname || (groupActive && pIdx === 0)
+                      ? {
+                          backgroundColor: (theme) =>
+                            theme.palette.action.selected,
+                        }
+                      : {}
+                  }
+                >
+                  {t('navbar.' + p.label)}
+                </MenuItem>
+              ))}
+            </div>
+          );
+        })}
+      </Menu>
+    </li>
   );
 };
