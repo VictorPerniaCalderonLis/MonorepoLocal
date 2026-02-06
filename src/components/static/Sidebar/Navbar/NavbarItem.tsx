@@ -39,10 +39,10 @@ export const NavbarItem = ({
       <button
         onClick={item.children ? handleMenuClick : () => navigate(item.path)}
         aria-controls={`menu-${item.label}`}
-        className={`flex items-center overflow-hidden transition-all duration-200 ease-out hover:translate-x-0.5 ${
+        className={`flex overflow-hidden transition-[background-color,transform] duration-200 ease-out hover:translate-x-0.5 ${
           collapsed
-            ? 'h-16 w-[90px] flex-col gap-2 rounded-2xl px-2 py-2'
-            : 'h-16 w-full max-w-[222px] flex-row gap-4 rounded-[18px] px-6 py-4'
+            ? 'h-16 w-[90px] flex-col items-center justify-center rounded-2xl'
+            : 'h-16 w-full max-w-[222px] flex-row items-center gap-4 rounded-[18px] px-6'
         } ${isActive ? 'bg-primary font-medium text-white' : 'bg-white text-black'} `}
       >
         <span
