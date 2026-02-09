@@ -60,7 +60,7 @@ export const NavbarItem = ({
                 : item.icon}
             </span>
             {collapsed && item.hasBadge && (
-              <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-red-500 px-1 text-[10px] leading-none font-medium text-white">
+              <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-red-500 px-1 text-[10px] leading-none font-normal text-white">
                 1
               </span>
             )}
@@ -76,7 +76,7 @@ export const NavbarItem = ({
           )}
 
           {!collapsed && item.hasBadge && (
-            <span className="flex h-4 min-w-[16px] items-center justify-center rounded-full bg-red-500 px-1 text-[10px] leading-none font-medium text-white">
+            <span className="flex h-4 min-w-[16px] items-center justify-center rounded-full bg-red-500 px-1 text-[10px] leading-none font-normal text-white">
               1
             </span>
           )}
