@@ -1,36 +1,25 @@
-import { HiCog6Tooth, HiOutlineCog6Tooth } from 'react-icons/hi2';
-import { IoHome, IoHomeOutline } from 'react-icons/io5';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { NavbarItem } from '../../models/constants/Navbar/NavbarData';
-
 export const navbarData: NavbarItem[] = [
   {
-    path: '/',
-    label: 'home',
-    icon: <IoHomeOutline size={30} />,
-    fieldIcon: <IoHome size={30} />,
+    path: '/ruta1',
+    label: 'request',
+    icon: <FactCheckIcon sx={{ fontSize: 30 }} />,
+    fieldIcon: <FactCheckIcon sx={{ fontSize: 30 }} />,
   },
   {
-    path: '/examples',
-    label: 'examples',
-    icon: <HiOutlineCog6Tooth size={30} />,
-    fieldIcon: <HiCog6Tooth size={30} />,
-    children: [
-      {
-        path: '/examples',
-        label: 'examples',
-        icon: <HiOutlineCog6Tooth size={15} />,
-        fieldIcon: <HiCog6Tooth size={15} />,
-        children: [
-          {
-            path: '/examples/example1',
-            label: 'example1',
-          },
-          {
-            path: '/examples/example2',
-            label: 'example2',
-          },
-        ],
-      },
-    ],
+    path: '/ruta2',
+    label: 'administration',
+    icon: <SettingsIcon sx={{ fontSize: 30 }} />,
+    fieldIcon: <SettingsIcon sx={{ fontSize: 30 }} />,
+  },
+  {
+    path: '/ruta3',
+    label: 'notifications',
+    icon: <NotificationsNoneIcon sx={{ fontSize: 30 }} />,
+    fieldIcon: <NotificationsNoneIcon sx={{ fontSize: 30 }} />,
+    hasBadge: true,
   },
 ];

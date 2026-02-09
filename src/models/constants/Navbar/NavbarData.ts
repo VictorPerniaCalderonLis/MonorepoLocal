@@ -3,7 +3,8 @@ import { ReactNode } from 'react';
 export interface NavbarItem {
   path: string;
   label: string;
-  icon?: ReactNode;
+  icon?: any;
   fieldIcon?: ReactNode;
   children?: NavbarItem[];
+  hasBadge?: boolean;
 }

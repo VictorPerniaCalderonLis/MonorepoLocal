@@ -35,7 +35,10 @@ export const NavbarItem = ({
   };
 
   return (
-    <li key={item.label} className="group flex items-center justify-center">
+    <li
+      key={item.label}
+      className="group flex items-center justify-center px-4"
+    >
       <button
         onClick={item.children ? handleMenuClick : () => navigate(item.path)}
         aria-controls={`menu-${item.label}`}
@@ -43,19 +46,25 @@ export const NavbarItem = ({
           collapsed
             ? 'justify-center rounded-2xl'
             : 'justify-between rounded-[18px] px-3'
-        } ${isActive ? 'bg-primary font-medium text-white' : 'bg-white text-black'} `}
+        } ${isActive ? 'bg-primary font-medium text-white' : 'bg-white text-black'}`}
       >
         <div className="flex items-center gap-2">
-          <span
-            className={`flex h-8 w-8 items-center justify-center ${
-              isActive ? 'text-white' : 'text-black'
-            }`}
-          >
-            {isActive && !collapsed && item.fieldIcon
-              ? item.fieldIcon
-              : item.icon}
-          </span>
-
+          <div className="relative flex h-8 w-8 items-center justify-center">
+            <span
+              className={`flex h-8 w-8 items-center justify-center ${
+                isActive ? 'text-white' : 'text-black'
+              }`}
+            >
+              {isActive && !collapsed && item.fieldIcon
+                ? item.fieldIcon
+                : item.icon}
+            </span>
+            {collapsed && item.hasBadge && (
+              <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-red-500 px-1 text-[10px] leading-none font-medium text-white">
+                1
+              </span>
+            )}
+          </div>
           {!collapsed && (
             <span
               className={`text-sm leading-none uppercase ${
@@ -65,6 +74,7 @@ export const NavbarItem = ({
               {t('navbar.' + item.label)}
             </span>
           )}
+
           {!collapsed && item.hasBadge && (
             <span className="flex h-4 min-w-[16px] items-center justify-center rounded-full bg-red-500 px-1 text-[10px] leading-none font-medium text-white">
               1

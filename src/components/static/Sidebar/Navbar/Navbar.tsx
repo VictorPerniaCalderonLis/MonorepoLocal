@@ -50,8 +50,11 @@ export const Navbar = () => {
                 />
               ))}
             </ul>
-            <div className="flex justify-center pb-4">
-              <IoLogOutOutline size={25} />
+            <div className="flex w-full justify-center pr-4 pb-4">
+              <div className="flex cursor-pointer items-center gap-2">
+                <IoLogOutOutline size={25} />
+                <span>Salir</span>
+              </div>
             </div>
           </nav>
         </div>
