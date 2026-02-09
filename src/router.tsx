@@ -57,6 +57,15 @@ export const AppRouter = () => {
           }
         />
       </Route>
+      <Route path="/ruta1">
+        <>Ruta1</>
+      </Route>
+      <Route path="/ruta2">
+        <>Ruta2</>
+      </Route>
+      <Route path="/ruta3">
+        <>Ruta2</>
+      </Route>
     </Routes>
   );
 };
