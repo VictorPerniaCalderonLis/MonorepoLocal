@@ -34,6 +34,9 @@ i18n.use(initReactI18next).init({
           example1: 'Ejemplo 1',
           example2: 'Ejemplo 2',
           examples: 'Ejemplos',
+          request: 'Solicitudes',
+          administration: 'Administración',
+          notifications: 'Notificaciones',
         },
       },
       pages: {
@@ -109,6 +112,9 @@ i18n.use(initReactI18next).init({
           example1: 'Example 1',
           example2: 'Example 2',
           examples: 'Examples',
+          request: 'Requests',
+          administration: 'Administration',
+          notifications: 'Notifications',
         },
       },
       pages: {
