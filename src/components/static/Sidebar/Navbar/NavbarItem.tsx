@@ -46,7 +46,7 @@ export const NavbarItem = ({
           collapsed
             ? 'justify-center rounded-2xl'
             : 'justify-between rounded-[18px] px-3'
-        } ${isActive ? 'bg-primary font-medium text-white' : 'bg-white text-black'}`}
+        } ${isActive ? 'bg-primary font-normal text-white' : 'bg-white font-normal text-black'}`}
       >
         <div className="flex items-center gap-2">
           <div className="relative flex h-8 w-8 items-center justify-center">
