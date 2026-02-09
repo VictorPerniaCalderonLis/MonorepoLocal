@@ -7,9 +7,12 @@ import {
   SelectChangeEvent,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { useSidebarStore } from '../../../../../store/sidebarStore';
 import { useLanguageSelector } from '../../../LanguageSelector/hooks/useLanguageSelector';
 export const WarehouseHeaderEnd = () => {
   const { selectedLanguage, handleChange } = useLanguageSelector();
+  const { collapsed } = useSidebarStore();
+
   const { t } = useTranslation('common');
 
   const handleSelectChange = (event: SelectChangeEvent<string>) => {
@@ -31,9 +34,17 @@ export const WarehouseHeaderEnd = () => {
               ALMACÉN
             </span>
           </div>
-          <AccountCircleIcon />
+          <div
+            className={
+              collapsed
+                ? 'h-full w-auto max-[560px]:hidden'
+                : 'h-full w-auto max-[655px]:hidden'
+            }
+          >
+            <AccountCircleIcon />
+          </div>
         </div>
-        <div className="w-[130px]">
+        <div className={`w-[130px] ${collapsed ? '' : 'max-[655px]:hidden'} `}>
           <FormControl
             size="small"
             variant="outlined"

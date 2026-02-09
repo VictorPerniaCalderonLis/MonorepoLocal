@@ -1,10 +1,17 @@
 import { useTranslation } from 'react-i18next';
+import { useSidebarStore } from '../../../../../store/sidebarStore';
 import { getActualDate } from '../../../../../utils/getActualDate';
 export const WarehouseHeaderCenter = () => {
   const { t, i18n } = useTranslation('common');
 
+  const { collapsed } = useSidebarStore();
+
   return (
-    <div className="hidden min-w-0 flex-1 items-center justify-end gap-4 min-[856px]:flex">
+    <div
+      className={`hidden min-w-0 flex-1 items-center justify-end gap-4 ${
+        collapsed ? 'min-[856px]:flex' : 'min-[945px]:flex'
+      }`}
+    >
       <div className="flex flex-col leading-tight">
         <span className="font-roboto text-headerText text-xs leading-normal font-extralight uppercase">
           {t('actualDate')}
