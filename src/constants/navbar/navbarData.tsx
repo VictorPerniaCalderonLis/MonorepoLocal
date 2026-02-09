@@ -1,25 +1,24 @@
-import FactCheckIcon from '@mui/icons-material/FactCheck';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import SettingsIcon from '@mui/icons-material/Settings';
+import { BsCardChecklist } from 'react-icons/bs';
+import { IoMdNotificationsOutline, IoMdSettings } from 'react-icons/io';
 import { NavbarItem } from '../../models/constants/Navbar/NavbarData';
 export const navbarData: NavbarItem[] = [
   {
     path: '/ruta1',
     label: 'request',
-    icon: <FactCheckIcon sx={{ fontSize: 30 }} />,
-    fieldIcon: <FactCheckIcon sx={{ fontSize: 30 }} />,
+    icon: <BsCardChecklist size={30} />,
+    fieldIcon: <BsCardChecklist size={30} />,
   },
   {
     path: '/ruta2',
     label: 'administration',
-    icon: <SettingsIcon sx={{ fontSize: 30 }} />,
-    fieldIcon: <SettingsIcon sx={{ fontSize: 30 }} />,
+    icon: <IoMdSettings size={30} />,
+    fieldIcon: <IoMdSettings size={30} />,
   },
   {
     path: '/ruta3',
     label: 'notifications',
-    icon: <NotificationsNoneIcon sx={{ fontSize: 30 }} />,
-    fieldIcon: <NotificationsNoneIcon sx={{ fontSize: 30 }} />,
+    icon: <IoMdNotificationsOutline size={30} />,
+    fieldIcon: <IoMdNotificationsOutline size={30} />,
     hasBadge: true,
   },
 ];

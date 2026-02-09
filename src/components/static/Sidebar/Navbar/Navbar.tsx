@@ -1,9 +1,9 @@
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import { IconButton } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { IoMdClose } from 'react-icons/io';
 import { IoLogOutOutline } from 'react-icons/io5';
+import { LuMenu } from 'react-icons/lu';
 import { useLocation } from 'react-router-dom';
 import { navbarData } from '../../../../constants/navbar/navbarData';
 import { NavbarItem } from '../../../../models/constants/Navbar/NavbarData';
@@ -20,9 +20,15 @@ export const Navbar = () => {
         <div className="flex grow flex-col items-center pt-4">
           <IconButton className="bg-transparent" onClick={toggleCollapsed}>
             {collapsed ? (
-              <CloseRoundedIcon sx={{ color: 'var(--text-primary-color)' }} />
+              <IoMdClose
+                size={30}
+                style={{ color: 'var(--text-primary-color)' }}
+              />
             ) : (
-              <MenuRoundedIcon sx={{ color: 'var(--text-primary-color)' }} />
+              <LuMenu
+                size={30}
+                style={{ color: 'var(--text-primary-color)' }}
+              />
             )}
           </IconButton>
 
@@ -53,7 +59,7 @@ export const Navbar = () => {
             <div className="flex w-full justify-center pr-4 pb-4">
               <div className="flex cursor-pointer items-center gap-2">
                 <IoLogOutOutline size={25} />
-                <span>Salir</span>
+                {collapsed ? null : <span>Salir</span>}
               </div>
             </div>
           </nav>

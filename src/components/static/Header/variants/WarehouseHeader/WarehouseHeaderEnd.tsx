@@ -1,4 +1,3 @@
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {
   FormControl,
   InputLabel,
@@ -7,6 +6,7 @@ import {
   SelectChangeEvent,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { FaUserCircle } from 'react-icons/fa';
 import { useSidebarStore } from '../../../../../store/sidebarStore';
 import { useLanguageSelector } from '../../../LanguageSelector/hooks/useLanguageSelector';
 export const WarehouseHeaderEnd = () => {
@@ -41,7 +41,7 @@ export const WarehouseHeaderEnd = () => {
                 : 'h-full w-auto max-[655px]:hidden'
             }
           >
-            <AccountCircleIcon />
+            <FaUserCircle size={30} />
           </div>
         </div>
         <div className={`w-[130px] ${collapsed ? '' : 'max-[655px]:hidden'} `}>
