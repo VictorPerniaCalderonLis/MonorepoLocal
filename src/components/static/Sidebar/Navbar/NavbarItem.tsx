@@ -39,31 +39,38 @@ export const NavbarItem = ({
       <button
         onClick={item.children ? handleMenuClick : () => navigate(item.path)}
         aria-controls={`menu-${item.label}`}
-        className={`flex overflow-hidden transition-[background-color,transform] duration-200 ease-out hover:translate-x-0.5 ${
+        className={`flex h-16 w-full items-center overflow-hidden transition-all duration-200 ease-out hover:translate-x-0.5 ${
           collapsed
-            ? 'h-16 w-[90px] flex-col items-center justify-center rounded-2xl'
-            : 'h-16 w-full max-w-[222px] flex-row items-center gap-4 rounded-[18px] px-6'
+            ? 'justify-center rounded-2xl'
+            : 'justify-between rounded-[18px] px-3'
         } ${isActive ? 'bg-primary font-medium text-white' : 'bg-white text-black'} `}
       >
-        <span
-          className={`flex h-8 w-8 items-center justify-center ${
-            isActive ? 'text-white' : 'text-black'
-          }`}
-        >
-          {isActive && !collapsed && item.fieldIcon
-            ? item.fieldIcon
-            : item.icon}
-        </span>
-
-        {!collapsed && (
+        <div className="flex items-center gap-2">
           <span
-            className={`text-sm leading-none uppercase ${
+            className={`flex h-8 w-8 items-center justify-center ${
               isActive ? 'text-white' : 'text-black'
             }`}
           >
-            {t('navbar.' + item.label)}
+            {isActive && !collapsed && item.fieldIcon
+              ? item.fieldIcon
+              : item.icon}
           </span>
-        )}
+
+          {!collapsed && (
+            <span
+              className={`text-sm leading-none uppercase ${
+                isActive ? 'text-white' : 'text-black'
+              }`}
+            >
+              {t('navbar.' + item.label)}
+            </span>
+          )}
+          {!collapsed && item.hasBadge && (
+            <span className="flex h-4 min-w-[16px] items-center justify-center rounded-full bg-red-500 px-1 text-[10px] leading-none font-medium text-white">
+              1
+            </span>
+          )}
+        </div>
       </button>
       <Menu
         id={`menu-${item.label}`}
