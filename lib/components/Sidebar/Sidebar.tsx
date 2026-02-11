@@ -1,8 +1,8 @@
-import { Navbar } from '../../../../lib/components/Sidebar/Navbar/Navbar';
-import { navbarData } from '../../../constants/navbar/navbarData';
-import { useSidebarStore } from '../../../store/sidebarStore';
+import { useSidebarStore } from '../../store/sidebarStore';
+import { Navbar } from './Navbar/Navbar';
+import { SidebarProps } from './Navbar/type/SidebarProps';
 
-export const Sidebar = ({ badgeCount }: { badgeCount?: number }) => {
+export const Sidebar = ({ items, badgeCount }: SidebarProps) => {
   const { collapsed, toggleCollapsed } = useSidebarStore();
 
   return (
@@ -14,7 +14,7 @@ export const Sidebar = ({ badgeCount }: { badgeCount?: number }) => {
       <div className="sticky top-0 flex h-dvh flex-col items-center text-sm">
         <Navbar
           collapsed={collapsed}
-          filteredNavbarData={navbarData}
+          filteredNavbarData={items}
           toggleCollapsed={toggleCollapsed}
           badgeCount={badgeCount}
         />

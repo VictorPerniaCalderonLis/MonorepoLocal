@@ -1,20 +1,31 @@
-import { RowFlexLayout } from './layouts/RowFlexLayout/RowFlexLayout';
+import { useTolgee } from '@tolgee/react';
+import { HEADER_TYPE } from '../lib/constants/HeaderType/HeaderType';
+import { MainLayout } from '../lib/layouts/MainLayout';
+import { navbarData } from './constants/navbar/navbarData';
 import { AppRouter } from './router';
+import { useSidebarStore } from './store/sidebarStore';
 
 export const App = () => {
-  // TODO: en caso de tener autenticación por @lis-data-solutions/lis-security-keycloak
-  // const { isLoading, user } = useAuth();
+  const { collapsed } = useSidebarStore();
+  const { getLanguage, changeLanguage } = useTolgee();
 
-  // if (isLoading)
-  //   return (
-  //     <div className="h-full w-full">
-  //       <LoadingSpinner />
-  //     </div>
-  //   );
-  // if (!user) return <NotFoundPage />;
   return (
-    <RowFlexLayout>
+    <MainLayout
+      sidebarProps={{ items: navbarData }}
+      headerprops={{
+        headerType: HEADER_TYPE.WAREHOUSE,
+        warehouse: {
+          end: {
+            user: 'test',
+            warehouseName: 'testWarehouse',
+            selectedLanguage: getLanguage() as string,
+            onChangeLanguage: changeLanguage,
+            collapsed,
+          },
+        },
+      }}
+    >
       <AppRouter />
-    </RowFlexLayout>
+    </MainLayout>
   );
 };

@@ -15,7 +15,9 @@ import { MuiTheme } from './styles/MuiTheme.tsx';
 import { toastOptions } from './styles/toastOptions.ts';
 
 // local
+import { TolgeeProvider } from '@tolgee/react';
 import { App } from './App.tsx';
+import { tolgee } from './i18n/tolgee.ts';
 import { ErrorFallback } from './pages/static/Error/ErrorFallback.tsx';
 import { ApiProvider } from './providers/ApiProvider.tsx';
 
@@ -32,15 +34,17 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   // TODO: en caso de tener autenticación por @lis-data-solutions/lis-security-keycloak
   // <AuthProvider oidcConfig={oidcConfig}>
   <ErrorBoundary FallbackComponent={ErrorFallback}>
-    <ThemeProvider theme={MuiTheme}>
-      <Toaster toastOptions={toastOptions} />
-      <CssBaseLine />
-      <ApiProvider>
-        <Router>
-          <App />
-        </Router>
-      </ApiProvider>
-    </ThemeProvider>
+    <TolgeeProvider tolgee={tolgee}>
+      <ThemeProvider theme={MuiTheme}>
+        <Toaster toastOptions={toastOptions} />
+        <CssBaseLine />
+        <ApiProvider>
+          <Router>
+            <App />
+          </Router>
+        </ApiProvider>
+      </ThemeProvider>
+    </TolgeeProvider>
   </ErrorBoundary>,
   // </AuthProvider>,
 );
