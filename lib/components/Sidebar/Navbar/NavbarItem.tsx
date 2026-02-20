@@ -69,11 +69,11 @@ export const NavbarItem = ({
           </div>
           {!collapsed && (
             <span
-              className={`text-sm leading-none uppercase ${
+              className={`text-left text-sm leading-none uppercase ${
                 isActive ? 'text-white' : 'text-black'
               }`}
             >
-              {t('navbar.' + item.label)}
+              {t(`navbar.${item.label}`)}
             </span>
           )}
 
